@@ -1,0 +1,39 @@
+╔════════════════════════════════════════════════════════════╗
+║   CLAWCRAZE LANDING PAGE - QUICK START                     ║
+╚════════════════════════════════════════════════════════════╝
+
+🚀 INSTALL IN 2 MINUTES:
+
+1. Open: clawcraze-landing-page.html
+2. Select All (Ctrl+A)
+3. Copy (Ctrl+C)
+4. Go to Shopify: Online Store → Pages → Add page
+5. Click "Show HTML" button
+6. Paste
+7. Save
+
+DONE! ✅
+
+═══════════════════════════════════════════════════════════
+
+📝 WHAT TO CHANGE (Optional):
+
+Buy Button Link:
+  Find: https://www.aliexpress.us/item/3256810331285360.html
+  Replace: /products/your-product-name
+
+Price:
+  Find: $14.99
+  Replace: Your price
+
+═══════════════════════════════════════════════════════════
+
+🌐 PREVIEW FIRST:
+https://ecommerce-hub-1125.preview.emergentagent.com
+
+═══════════════════════════════════════════════════════════
+
+📖 NEED HELP?
+See: HOW-TO-INSTALL.md
+
+═══════════════════════════════════════════════════════════
