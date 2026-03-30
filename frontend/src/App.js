@@ -6,9 +6,11 @@ function App() {
   const [quantity, setQuantity] = useState(1);
 
   const productImages = {
-    hero: 'https://images.pexels.com/photos/7725617/pexels-photo-7725617.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    lifestyle: 'https://images.pexels.com/photos/978555/pexels-photo-978555.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    detail: 'https://images.unsplash.com/photo-1625241589108-d4ceb8dbcc4d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHwyfHxjYXQlMjBzY3JhdGNoZXJ8ZW58MHx8fHwxNzc0OTA3ODM5fDA&ixlib=rb-4.1.0&q=85'
+    hero: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/7b18id6w_image.png',
+    lifestyle: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/czn145vn_image.png',
+    detail: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/bioj7d94_image.png',
+    shapes: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/kjo174bp_image.png',
+    folded: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/pbx65laj_image.png'
   };
 
   const reviews = [
@@ -52,23 +54,23 @@ function App() {
   const features = [
     {
       icon: <Heart className="w-6 h-6" />,
-      title: 'Cats Love It',
-      description: 'Ergonomic curved design perfectly matches your cat\'s natural stretching motion'
+      title: 'Endless Fun',
+      description: 'Foldable accordion design transforms into multiple shapes - tunnel, bed, or circular track'
     },
     {
       icon: <ShieldCheck className="w-6 h-6" />,
       title: 'Furniture Protection',
-      description: 'Redirect scratching behavior away from your precious furniture and carpets'
+      description: 'Irresistible corrugated texture keeps cats scratching here, not your furniture'
     },
     {
       icon: <Sparkles className="w-6 h-6" />,
-      title: 'Premium Quality',
-      description: 'Made from durable, eco-friendly materials that last for years'
+      title: 'Interactive Ball Toy',
+      description: 'Built-in bell ball spins and rolls to keep your cat entertained for hours'
     },
     {
       icon: <CheckCircle2 className="w-6 h-6" />,
-      title: 'Easy to Use',
-      description: 'No assembly required - just place it and watch your cat enjoy'
+      title: 'Versatile Shapes',
+      description: 'Fold, stretch, and configure into 6+ different shapes for endless variety'
     }
   ];
 
@@ -145,7 +147,7 @@ function App() {
                 </span>
               </h1>
               <p className="text-xl text-stone-600 mb-8">
-                The Magic Curl Cat Scratcher - The revolutionary curved design that cats can't resist. Watch your furniture stay scratch-free!
+                The Magic Curl Cat Scratcher - The innovative foldable accordion scratcher with a spinning ball toy. Transform it into 6+ different shapes for endless entertainment!
               </p>
               <div className="flex items-center space-x-2 mb-8">
                 <div className="flex">
@@ -241,40 +243,65 @@ function App() {
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-6">
-                Watch Them Fall in Love
+                Transforms Into 6+ Different Shapes!
               </h2>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-stone-900">Perfect Curve Design</h3>
-                    <p className="text-stone-600">Matches your cat's natural stretching and scratching motion</p>
+                    <h3 className="font-semibold text-stone-900">Accordion Foldable Design</h3>
+                    <p className="text-stone-600">Expands and folds into circular, tunnel, flat, or wavy configurations</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-stone-900">Premium Sisal Material</h3>
-                    <p className="text-stone-600">Durable texture that satisfies even the most aggressive scratchers</p>
+                    <h3 className="font-semibold text-stone-900">Corrugated Cardboard Texture</h3>
+                    <p className="text-stone-600">Irresistible scratching surface that satisfies natural instincts</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-stone-900">Stable Base</h3>
-                    <p className="text-stone-600">Weighted bottom prevents tipping during vigorous use</p>
+                    <h3 className="font-semibold text-stone-900">Interactive Bell Ball</h3>
+                    <p className="text-stone-600">Spinning ball in the center adds an extra layer of play and engagement</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-stone-900">Eco-Friendly</h3>
-                    <p className="text-stone-600">Made from sustainable, non-toxic materials safe for pets</p>
+                    <h3 className="font-semibold text-stone-900">Space-Saving Storage</h3>
+                    <p className="text-stone-600">Folds completely flat for easy storage when not in use</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+
+      {/* Versatile Shapes Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white" data-testid="shapes-section">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-stone-900 mb-4">
+            Versatile Shapes, Endless Fun
+          </h2>
+          <p className="text-xl text-stone-600 mb-8">
+            Transform your Magic Curl into 6+ different configurations to keep your cat entertained!
+          </p>
+          <div className="relative">
+            <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 to-amber-400 rounded-3xl blur-2xl opacity-20"></div>
+            <img
+              src={productImages.shapes}
+              alt="Different configurations of the Magic Curl Cat Scratcher"
+              className="relative rounded-3xl shadow-2xl w-full"
+              data-testid="shapes-showcase"
+            />
+          </div>
+          <p className="text-stone-600 mt-6 text-lg">
+            Circular track • Tunnel • Flat bed • Wavy scratcher • Compact storage & more!
+          </p>
         </div>
       </section>
 
