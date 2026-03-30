@@ -6,11 +6,11 @@ function App() {
   const [quantity, setQuantity] = useState(1);
 
   const productImages = {
-    hero: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/7b18id6w_image.png',
-    lifestyle: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/czn145vn_image.png',
-    detail: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/bioj7d94_image.png',
-    shapes: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/kjo174bp_image.png',
-    folded: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/pbx65laj_image.png'
+    hero: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/otlxgvk0_image.png',
+    lifestyle: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/1u34jm5y_image.png',
+    detail: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/6cj36z2i_image.png',
+    shapes: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/6zi0zlke_image.png',
+    folded: 'https://customer-assets.emergentagent.com/job_ecommerce-hub-1125/artifacts/xiyclcce_image.png'
   };
 
   const reviews = [
