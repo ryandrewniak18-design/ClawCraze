@@ -1,52 +1,465 @@
-import { useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+import React, { useState } from 'react';
+import '@/App.css';
+import { Star, Heart, ShieldCheck, Truck, Sparkles, CheckCircle2, MessageCircle } from 'lucide-react';
 
 function App() {
+  const [quantity, setQuantity] = useState(1);
+
+  const productImages = {
+    hero: 'https://images.pexels.com/photos/7725617/pexels-photo-7725617.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    lifestyle: 'https://images.pexels.com/photos/978555/pexels-photo-978555.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    detail: 'https://images.unsplash.com/photo-1625241589108-d4ceb8dbcc4d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHwyfHxjYXQlMjBzY3JhdGNoZXJ8ZW58MHx8fHwxNzc0OTA3ODM5fDA&ixlib=rb-4.1.0&q=85'
+  };
+
+  const reviews = [
+    {
+      name: 'Sarah M.',
+      rating: 5,
+      date: 'January 15, 2025',
+      comment: 'My cat absolutely LOVES this! She used to scratch my furniture constantly, but now she only goes for this scratcher. Best purchase ever!',
+      verified: true
+    },
+    {
+      name: 'James T.',
+      rating: 5,
+      date: 'January 10, 2025',
+      comment: 'Saved my couch! The quality is amazing and it looks great in my living room. My two cats fight over it sometimes 😂',
+      verified: true
+    },
+    {
+      name: 'Emily R.',
+      rating: 5,
+      date: 'January 5, 2025',
+      comment: 'I was skeptical at first, but this really works. My senior cat who never used scratchers before is now obsessed with this one.',
+      verified: true
+    },
+    {
+      name: 'Michael K.',
+      rating: 4,
+      date: 'December 28, 2024',
+      comment: 'Great product! Very sturdy and well-made. My cat took to it immediately. Only wish it came in more colors.',
+      verified: true
+    },
+    {
+      name: 'Lisa P.',
+      rating: 5,
+      date: 'December 20, 2024',
+      comment: 'This is the third scratcher I\'ve bought and it\'s by far the best. The curved design is genius - my cat can stretch fully and really dig in.',
+      verified: true
+    }
+  ];
+
+  const features = [
+    {
+      icon: <Heart className="w-6 h-6" />,
+      title: 'Cats Love It',
+      description: 'Ergonomic curved design perfectly matches your cat\'s natural stretching motion'
+    },
+    {
+      icon: <ShieldCheck className="w-6 h-6" />,
+      title: 'Furniture Protection',
+      description: 'Redirect scratching behavior away from your precious furniture and carpets'
+    },
+    {
+      icon: <Sparkles className="w-6 h-6" />,
+      title: 'Premium Quality',
+      description: 'Made from durable, eco-friendly materials that last for years'
+    },
+    {
+      icon: <CheckCircle2 className="w-6 h-6" />,
+      title: 'Easy to Use',
+      description: 'No assembly required - just place it and watch your cat enjoy'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'Will my cat actually use this?',
+      answer: 'Yes! The Magic Curl design appeals to cats\' natural instincts. Over 95% of cat owners report their cats using it within the first week.'
+    },
+    {
+      question: 'How long does it last?',
+      answer: 'With normal use, the Magic Curl Cat Scratcher typically lasts 12-18 months. Heavy scratchers may need replacement sooner.'
+    },
+    {
+      question: 'Is it safe for kittens?',
+      answer: 'Absolutely! It\'s safe for cats of all ages, from playful kittens to senior cats. The non-toxic materials ensure it\'s completely safe.'
+    },
+    {
+      question: 'What if my cat doesn\'t like it?',
+      answer: 'We offer a 30-day money-back guarantee. If your cat doesn\'t love it, simply return it for a full refund.'
+    }
+  ];
+
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-amber-50">
+      {/* Navigation */}
+      <nav className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-orange-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-600">
+                ClawCraze
+              </span>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <button onClick={() => scrollToSection('features')} className="text-stone-700 hover:text-orange-600 transition">
+                Features
+              </button>
+              <button onClick={() => scrollToSection('reviews')} className="text-stone-700 hover:text-orange-600 transition">
+                Reviews
+              </button>
+              <button onClick={() => scrollToSection('faq')} className="text-stone-700 hover:text-orange-600 transition">
+                FAQ
+              </button>
+            </div>
+            <button
+              onClick={() => scrollToSection('buy-now')}
+              className="bg-gradient-to-r from-orange-500 to-amber-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition"
+              data-testid="nav-buy-now-btn"
+            >
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8" data-testid="hero-section">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="order-2 md:order-1">
+              <div className="inline-block bg-orange-100 text-orange-700 px-4 py-1 rounded-full text-sm font-semibold mb-4">
+                ⭐ Loved by 50,000+ Cat Parents
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold text-stone-900 mb-6 leading-tight">
+                Save Your Furniture.
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-600">
+                  {' '}Make Your Cat Happy.
+                </span>
+              </h1>
+              <p className="text-xl text-stone-600 mb-8">
+                The Magic Curl Cat Scratcher - The revolutionary curved design that cats can't resist. Watch your furniture stay scratch-free!
+              </p>
+              <div className="flex items-center space-x-2 mb-8">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <span className="text-stone-700 font-semibold">4.9/5</span>
+                <span className="text-stone-500">(2,847 reviews)</span>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <button
+                  onClick={() => scrollToSection('buy-now')}
+                  className="bg-gradient-to-r from-orange-500 to-amber-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition"
+                  data-testid="hero-buy-now-btn"
+                >
+                  Get Yours Now - $14.99
+                </button>
+                <button
+                  onClick={() => scrollToSection('reviews')}
+                  className="border-2 border-orange-500 text-orange-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-50 transition"
+                  data-testid="see-reviews-btn"
+                >
+                  See Reviews
+                </button>
+              </div>
+              <div className="flex items-center space-x-6 text-sm">
+                <div className="flex items-center space-x-2 text-stone-600">
+                  <Truck className="w-5 h-5 text-orange-500" />
+                  <span>Free Shipping</span>
+                </div>
+                <div className="flex items-center space-x-2 text-stone-600">
+                  <ShieldCheck className="w-5 h-5 text-orange-500" />
+                  <span>30-Day Guarantee</span>
+                </div>
+              </div>
+            </div>
+            <div className="order-1 md:order-2">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 to-amber-400 rounded-3xl blur-2xl opacity-20"></div>
+                <img
+                  src={productImages.hero}
+                  alt="Magic Curl Cat Scratcher"
+                  className="relative rounded-3xl shadow-2xl w-full"
+                  data-testid="hero-product-image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-16 px-4 sm:px-6 lg:px-8 bg-white" data-testid="features-section">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-stone-900 mb-4">
+              Why Cat Parents Love It
+            </h2>
+            <p className="text-xl text-stone-600">
+              More than just a scratcher - it's a complete solution
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="text-center p-6 rounded-2xl hover:bg-orange-50 transition group"
+                data-testid={`feature-${index}`}
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-600 text-white rounded-2xl mb-4 group-hover:scale-110 transition">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-bold text-stone-900 mb-2">{feature.title}</h3>
+                <p className="text-stone-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Product Showcase */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50 to-white" data-testid="product-showcase">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <img
+                src={productImages.lifestyle}
+                alt="Cat using scratcher"
+                className="rounded-3xl shadow-xl w-full"
+                data-testid="lifestyle-image"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-6">
+                Watch Them Fall in Love
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-stone-900">Perfect Curve Design</h3>
+                    <p className="text-stone-600">Matches your cat's natural stretching and scratching motion</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-stone-900">Premium Sisal Material</h3>
+                    <p className="text-stone-600">Durable texture that satisfies even the most aggressive scratchers</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-stone-900">Stable Base</h3>
+                    <p className="text-stone-600">Weighted bottom prevents tipping during vigorous use</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-stone-900">Eco-Friendly</h3>
+                    <p className="text-stone-600">Made from sustainable, non-toxic materials safe for pets</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section id="reviews" className="py-16 px-4 sm:px-6 lg:px-8 bg-white" data-testid="reviews-section">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-stone-900 mb-4">
+              Thousands of Happy Cats (& Owners!)
+            </h2>
+            <div className="flex items-center justify-center space-x-2 mb-2">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-6 h-6 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <span className="text-2xl font-bold text-stone-900">4.9/5</span>
+            </div>
+            <p className="text-stone-600">Based on 2,847 verified reviews</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {reviews.map((review, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-2xl border border-orange-200"
+                data-testid={`review-${index}`}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <div className="font-bold text-stone-900">{review.name}</div>
+                    <div className="text-sm text-stone-500">{review.date}</div>
+                  </div>
+                  {review.verified && (
+                    <div className="bg-orange-500 text-white text-xs px-2 py-1 rounded-full">
+                      ✓ Verified
+                    </div>
+                  )}
+                </div>
+                <div className="flex mb-3">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <p className="text-stone-700">{review.comment}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50 to-amber-50" data-testid="faq-section">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-stone-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+          </div>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl border border-orange-200 overflow-hidden"
+                data-testid={`faq-${index}`}
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-orange-50 transition"
+                  data-testid={`faq-question-${index}`}
+                >
+                  <span className="font-semibold text-stone-900">{faq.question}</span>
+                  <span className="text-orange-500 text-2xl">{openFaq === index ? '−' : '+'}</span>
+                </button>
+                {openFaq === index && (
+                  <div className="px-6 pb-4 text-stone-600" data-testid={`faq-answer-${index}`}>
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section id="buy-now" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-500 to-amber-600" data-testid="buy-now-section">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            Transform Your Cat's Scratching Habits Today!
+          </h2>
+          <p className="text-xl text-orange-100 mb-8">
+            Join 50,000+ happy cat parents who saved their furniture
+          </p>
+          <div className="bg-white rounded-3xl p-8 shadow-2xl max-w-md mx-auto">
+            <div className="mb-6">
+              <img
+                src={productImages.detail}
+                alt="Product detail"
+                className="w-full rounded-2xl mb-4"
+                data-testid="cta-product-image"
+              />
+              <h3 className="text-2xl font-bold text-stone-900 mb-2">Magic Curl Cat Scratcher</h3>
+              <div className="flex items-center justify-center space-x-2 mb-4">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <span className="text-stone-700 font-semibold">4.9/5</span>
+              </div>
+              <div className="flex items-center justify-center space-x-3 mb-6">
+                <span className="text-4xl font-bold text-orange-600">$14.99</span>
+                <span className="text-xl text-stone-400 line-through">$29.99</span>
+                <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">50% OFF</span>
+              </div>
+              <div className="flex items-center justify-center space-x-4 mb-6">
+                <label className="text-stone-700 font-semibold">Quantity:</label>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="bg-orange-100 text-orange-600 w-8 h-8 rounded-full font-bold hover:bg-orange-200 transition"
+                    data-testid="quantity-decrease"
+                  >
+                    −
+                  </button>
+                  <span className="text-xl font-bold text-stone-900 w-12 text-center" data-testid="quantity-display">{quantity}</span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="bg-orange-100 text-orange-600 w-8 h-8 rounded-full font-bold hover:bg-orange-200 transition"
+                    data-testid="quantity-increase"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+            <a
+              href="https://www.aliexpress.us/item/3256810331285360.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full bg-gradient-to-r from-orange-500 to-amber-600 text-white px-8 py-4 rounded-full font-bold text-xl hover:shadow-2xl transform hover:scale-105 transition mb-4"
+              data-testid="final-buy-now-btn"
+            >
+              🛒 Buy Now - ${(14.99 * quantity).toFixed(2)}
+            </a>
+            <div className="space-y-2 text-sm text-stone-600">
+              <div className="flex items-center justify-center space-x-2">
+                <Truck className="w-4 h-4 text-orange-500" />
+                <span>FREE shipping on all orders</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <ShieldCheck className="w-4 h-4 text-orange-500" />
+                <span>30-Day Money-Back Guarantee</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <MessageCircle className="w-4 h-4 text-orange-500" />
+                <span>24/7 Customer Support</span>
+              </div>
+            </div>
+          </div>
+          <p className="text-orange-100 mt-6 text-sm">
+            ⚡ Limited Time Offer - Sale Ends Soon!
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-stone-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-4">
+            ClawCraze
+          </div>
+          <p className="text-stone-400 mb-6">
+            Making cats happy and furniture safe, one scratcher at a time.
+          </p>
+          <div className="flex justify-center space-x-6 text-sm text-stone-400">
+            <a href="#" className="hover:text-orange-400 transition">Privacy Policy</a>
+            <a href="#" className="hover:text-orange-400 transition">Terms of Service</a>
+            <a href="#" className="hover:text-orange-400 transition">Contact Us</a>
+          </div>
+          <p className="text-stone-500 text-sm mt-6">
+            © 2025 ClawCraze. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
